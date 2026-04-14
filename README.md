@@ -10,7 +10,7 @@
 ## Features
 
 ### Authentication
-- JWT आधारित login/signup
+- JWT login/signup
 - BCrypt password encryption
 - Roles: ADMIN, USER
 
