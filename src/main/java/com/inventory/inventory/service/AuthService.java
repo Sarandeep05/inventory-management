@@ -24,8 +24,17 @@ public class AuthService {
         // 🔐 Encrypt password
         user.setPassword(encoder.encode(user.getPassword()));
 
-        // 🔥 ADD THIS LINE HERE
-        user.setRole("ROLE_" + user.getRole());
+        // Safely add ROLE_ prefix
+        String role = user.getRole();
+        if (role != null) {
+            if (role.startsWith("ROLE_ROLE_")) {
+                user.setRole(role.substring(5)); // Fix double prefix if sent from old UI
+            } else if (!role.startsWith("ROLE_")) {
+                user.setRole("ROLE_" + role);
+            }
+        } else {
+            user.setRole("ROLE_USER"); // default fallback
+        }
 
         repo.save(user);
 
@@ -42,6 +51,6 @@ public class AuthService {
             throw new RuntimeException("Invalid password");
         }
 
-        return jwtUtil.generateToken(email);
+        return jwtUtil.generateToken(email, user.getRole());
     }
 }

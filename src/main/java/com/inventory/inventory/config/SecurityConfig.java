@@ -31,6 +31,19 @@ public class SecurityConfig {
                 // Authorization rules
                 .authorizeHttpRequests(auth -> auth
 
+                        // ALLOW INTERNAL FORWARDS
+                        .dispatcherTypeMatchers(jakarta.servlet.DispatcherType.FORWARD, jakarta.servlet.DispatcherType.ERROR).permitAll()
+
+                        // PUBLIC FRONTEND FILES
+                        .requestMatchers(
+                                "/",
+                                "/index.html",
+                                "/*.css",
+                                "/*.js",
+                                "/favicon.ico",
+                                "/error"
+                        ).permitAll()
+
                         // PUBLIC
                         .requestMatchers("/auth/**").permitAll()
 
