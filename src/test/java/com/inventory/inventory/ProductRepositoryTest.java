@@ -11,6 +11,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
+@SuppressWarnings("null")
 public class ProductRepositoryTest {
 
     @Autowired
