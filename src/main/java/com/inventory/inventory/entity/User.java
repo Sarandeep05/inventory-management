@@ -2,6 +2,8 @@ package com.inventory.inventory.entity;
 
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.NotBlank;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -10,9 +12,11 @@ public class User {
     @GeneratedValue
     private Long id;
 
+    @NotBlank(message = "Name cannot be blank")
     private String name;
 
     @Column(unique = true)
+    @NotBlank(message = "Email is required")
     private String email;
 
     public Long getId() {
@@ -55,6 +59,7 @@ public class User {
         this.role = role;
     }
 
+    @NotBlank(message = "Password is required")
     private String password;
 
     private String role;

@@ -5,6 +5,8 @@ import com.inventory.inventory.entity.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Set;
 
+import jakarta.validation.constraints.NotBlank;
+
 @Entity
 public class Category {
 
@@ -12,6 +14,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Category name is required")
     private String name;
 
     // Bidirectional optional (kept simple)

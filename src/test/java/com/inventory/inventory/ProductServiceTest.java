@@ -1,0 +1,37 @@
+package com.inventory.inventory;
+
+import com.inventory.inventory.entity.Product;
+import com.inventory.inventory.repository.ProductRepository;
+import com.inventory.inventory.service.ProductService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+public class ProductServiceTest {
+
+    @Mock
+    private ProductRepository productRepository;
+
+    @InjectMocks
+    private ProductService productService;
+
+    @Test
+    public void testAddProduct() {
+        Product product = new Product();
+        product.setName("Mock Product");
+        
+        when(productRepository.save(any(Product.class))).thenReturn(product);
+        
+        Product savedProduct = productService.addProduct(product);
+        assertThat(savedProduct.getName()).isEqualTo("Mock Product");
+    }
+}

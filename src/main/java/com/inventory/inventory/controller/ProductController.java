@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/products")
 @SuppressWarnings("null")
@@ -18,13 +20,13 @@ public class ProductController {
 
     // ADMIN
     @PostMapping("/add")
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@Valid @RequestBody Product product) {
         return service.addProduct(product);
     }
 
     // ADMIN
     @PutMapping("/update/{id}")
-    public Product update(@PathVariable Long id, @RequestBody Product p) {
+    public Product update(@PathVariable Long id, @Valid @RequestBody Product p) {
         return service.updateProduct(id, p);
     }
 

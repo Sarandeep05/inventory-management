@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import java.util.Set;
 import com.inventory.inventory.category.Category;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 @Entity
 public class Product {
 
@@ -11,9 +15,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Product name cannot be empty")
     private String name;
     private String description;
+    @Min(value = 0, message = "Price cannot be negative")
     private double price;
+    @Min(value = 0, message = "Stock cannot be negative")
     private int stock;
 
     private String status; // ACTIVE / INACTIVE
