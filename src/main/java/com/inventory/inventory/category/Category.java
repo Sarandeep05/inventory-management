@@ -2,6 +2,7 @@ package com.inventory.inventory.category;
 
 import jakarta.persistence.*;
 import com.inventory.inventory.entity.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,7 @@ public class Category {
 
     // Bidirectional optional (kept simple)
     @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
     private Set<Product> products;
 
     // getters & setters

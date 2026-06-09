@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.lang.NonNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class OrderService {
 
     // ✅ PLACE ORDER
     @Transactional
-    public Order placeOrder(Long productId, int quantity, String userEmail) {
+    public Order placeOrder(@NonNull Long productId, int quantity, String userEmail) {
 
         Product product = productRepo.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
@@ -40,6 +41,7 @@ public class OrderService {
         order.setUserEmail(userEmail);
         order.setStatus("CONFIRMED");
         order.setCreatedAt(LocalDateTime.now());
+        order.setTotalPrice(product.getPrice() * quantity);
 
         return orderRepo.save(order);
     }
@@ -51,7 +53,7 @@ public class OrderService {
 
     // ✅ CANCEL ORDER
     @Transactional
-    public void cancelOrder(Long orderId) {
+    public void cancelOrder(@NonNull Long orderId) {
 
         Order order = orderRepo.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found"));

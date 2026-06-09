@@ -5,6 +5,7 @@ import com.inventory.inventory.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class ProductService {
     }
 
     // UPDATE
-    public Product updateProduct(Long id, Product p) {
+    public Product updateProduct(@NonNull Long id, Product p) {
         Product existing = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
@@ -39,7 +40,7 @@ public class ProductService {
     }
 
     // DELETE
-    public void deleteProduct(Long id) {
+    public void deleteProduct(@NonNull Long id) {
         repo.deleteById(id);
     }
 
@@ -54,7 +55,7 @@ public class ProductService {
     }
 
     // FILTER BY CATEGORY
-    public List<Product> byCategory(Long id) {
+    public List<Product> byCategory(@NonNull Long id) {
         return repo.findByCategories_Id(id);
     }
 

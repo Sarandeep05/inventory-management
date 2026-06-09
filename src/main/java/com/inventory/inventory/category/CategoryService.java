@@ -1,7 +1,7 @@
 package com.inventory.inventory.category;
 
-import com.inventory.inventory.category.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepo;
 
-    public Category addCategory(Category category) {
+    public Category addCategory(@NonNull Category category) {
         return categoryRepo.save(category);
     }
 
@@ -20,7 +20,7 @@ public class CategoryService {
         return categoryRepo.findAll();
     }
 
-    public Category update(Long id, Category updated) {
+    public Category update(@NonNull Long id, Category updated) {
         Category c = categoryRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Category not found"));
 
@@ -28,7 +28,7 @@ public class CategoryService {
         return categoryRepo.save(c);
     }
 
-    public void delete(Long id) {
+    public void delete(@NonNull Long id) {
         categoryRepo.deleteById(id);
     }
 }

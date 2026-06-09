@@ -24,6 +24,8 @@ public class Order {
 
     private LocalDateTime createdAt;
 
+    private Double totalPrice;
+
     // ✅ GETTERS & SETTERS
 
     public Long getId() {
@@ -72,5 +74,13 @@ public class Order {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

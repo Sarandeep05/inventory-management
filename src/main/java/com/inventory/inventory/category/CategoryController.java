@@ -1,6 +1,5 @@
 package com.inventory.inventory.category;
 
-import com.inventory.inventory.category.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/categories")
+@SuppressWarnings("null")
 public class CategoryController {
 
     @Autowired

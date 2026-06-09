@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@SuppressWarnings("null")
 public class ProductController {
 
     @Autowired
