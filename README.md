@@ -50,7 +50,11 @@
 - GET /orders/my-orders
 - PUT /orders/cancel/{id}
 
-## Swagger
+## Live Deployment
+- **Live App:** https://inventory-management-424w.onrender.com
+- **Live Swagger Docs:** https://inventory-management-424w.onrender.com/swagger-ui/index.html
+
+## Local Swagger
 http://localhost:8080/swagger-ui/index.html
 
 ## Author
